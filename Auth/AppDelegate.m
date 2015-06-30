@@ -17,13 +17,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // ****************************************************************************
-    // Fill in with your LAS credentials:
+    // Uncommit fill in with your LAS credentials:
     // ****************************************************************************
 #warning Please fill in with your LAS credentials
-    [LAS setApplicationId:@"APPLICATION_ID_HERE" clientKey:@"CLIENT_KEY_HERE"];
-
+    // [LAS setApplicationId:@"APPLICATION_ID_HERE" clientKey:@"CLIENT_KEY_HERE"];
+    
     // ****************************************************************************
-    // Your Facebook application id is configured in Info.plist.
+    // Make sure your Facebook application id is configured in Info.plist.
     // ****************************************************************************
     [LASFacebookUtils initializeFacebook];
 

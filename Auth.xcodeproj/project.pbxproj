@@ -21,6 +21,7 @@
 		9D608DBD1B423A6600888180 /* LAS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D608DBB1B423A6600888180 /* LAS.framework */; };
 		9D608DBE1B423A6600888180 /* LASFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D608DBC1B423A6600888180 /* LASFacebookUtils.framework */; };
 		9D6E5575198887600048BD22 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6E5574198887600048BD22 /* libsqlite3.dylib */; };
+		9D8C6D581B427C4B00036055 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8C6D571B427C4B00036055 /* libz.dylib */; };
 		9DF7E2161999CC83005A32D0 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DF7E2151999CC83005A32D0 /* CoreTelephony.framework */; };
 		C4BB20D7161BC4FB00A7884A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4BB20D4161BC4FB00A7884A /* Default-568h@2x.png */; };
 		C4BB20D8161BC4FB00A7884A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C4BB20D5161BC4FB00A7884A /* Default.png */; };
@@ -53,6 +54,7 @@
 		9D608DBB1B423A6600888180 /* LAS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LAS.framework; path = Frameworks/LAS/LAS.framework; sourceTree = "<group>"; };
 		9D608DBC1B423A6600888180 /* LASFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LASFacebookUtils.framework; path = Frameworks/LAS/LASFacebookUtils.framework; sourceTree = "<group>"; };
 		9D6E5574198887600048BD22 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		9D8C6D571B427C4B00036055 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9DF7E2151999CC83005A32D0 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		C4BB20D4161BC4FB00A7884A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C4BB20D5161BC4FB00A7884A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D8C6D581B427C4B00036055 /* libz.dylib in Frameworks */,
 				9D608DB41B423A3700888180 /* Bolts.framework in Frameworks */,
 				9D608DBE1B423A6600888180 /* LASFacebookUtils.framework in Frameworks */,
 				9D4F68AF1AD38060007AC9AE /* MobileCoreServices.framework in Frameworks */,
@@ -129,6 +132,7 @@
 		D4DA79ED14D3345A0055F672 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D8C6D571B427C4B00036055 /* libz.dylib */,
 				9D608DBB1B423A6600888180 /* LAS.framework */,
 				9D608DBC1B423A6600888180 /* LASFacebookUtils.framework */,
 				9D608DAC1B423A3700888180 /* Bolts.framework */,

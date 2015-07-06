@@ -12,7 +12,6 @@
 		9D4F68B21AD3809A007AC9AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D4F68B11AD3809A007AC9AE /* Images.xcassets */; };
 		9D4F68B41AD380CD007AC9AE /* Auth.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D4F68B31AD380CD007AC9AE /* Auth.xib */; };
 		9D608DB41B423A3700888180 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D608DAC1B423A3700888180 /* Bolts.framework */; };
-		9D608DB51B423A3700888180 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9D608DAE1B423A3700888180 /* FacebookSDKResources.bundle */; };
 		9D608DB61B423A3700888180 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9D608DAF1B423A3700888180 /* FBUserSettingsViewResources.bundle */; };
 		9D608DB71B423A3700888180 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9D608DB01B423A3700888180 /* LICENSE */; };
 		9D608DB81B423A3700888180 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9D608DB11B423A3700888180 /* README.txt */; };
@@ -45,7 +44,6 @@
 		9D4F68B11AD3809A007AC9AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9D4F68B31AD380CD007AC9AE /* Auth.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Auth.xib; sourceTree = "<group>"; };
 		9D608DAC1B423A3700888180 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
-		9D608DAE1B423A3700888180 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		9D608DAF1B423A3700888180 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		9D608DB01B423A3700888180 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9D608DB11B423A3700888180 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 		9D608DAD1B423A3700888180 /* FacebookResource */ = {
 			isa = PBXGroup;
 			children = (
-				9D608DAE1B423A3700888180 /* FacebookSDKResources.bundle */,
 				9D608DAF1B423A3700888180 /* FBUserSettingsViewResources.bundle */,
 				9D608DB01B423A3700888180 /* LICENSE */,
 				9D608DB11B423A3700888180 /* README.txt */,
@@ -258,7 +255,6 @@
 				9D4F68B41AD380CD007AC9AE /* Auth.xib in Resources */,
 				C4CF27E6161E3BAA008AB8CC /* login-button-small-pressed.png in Resources */,
 				C4CF27E7161E3BAA008AB8CC /* login-button-small-pressed@2x.png in Resources */,
-				9D608DB51B423A3700888180 /* FacebookSDKResources.bundle in Resources */,
 				9D4F68B21AD3809A007AC9AE /* Images.xcassets in Resources */,
 				9D608DB61B423A3700888180 /* FBUserSettingsViewResources.bundle in Resources */,
 				C4CF27E8161E3BAA008AB8CC /* login-button-small.png in Resources */,

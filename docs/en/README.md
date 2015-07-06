@@ -1,15 +1,8 @@
 # LAS-Demo-Auth-iOS
 
-## Overview
+## Setup
 
 The project teaches you how to use LAS user authentication and integrate with third platforms authentication.
-
-## Screenshots
-
-![](docs/images/1.png)
-![](docs/images/2.png)
-![](docs/images/3.png)
-![](docs/images/4.png)
 
 ## How to Run
 

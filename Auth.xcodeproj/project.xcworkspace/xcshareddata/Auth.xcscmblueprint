@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3FBBF00F08C9A14E322D2576B2C87E4B547DA349",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3FBBF00F08C9A14E322D2576B2C87E4B547DA349" : 0,
+    "E4D582F7A3254EBC13D919F507CC72B9BEEC7284" : 0,
+    "066F4D81919596A1D0CEAB960979104E35418410" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "01CCF3A1-14BC-4260-BBF7-C4C06F437452",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3FBBF00F08C9A14E322D2576B2C87E4B547DA349" : "LAS-Demo-Auth-iOS",
+    "E4D582F7A3254EBC13D919F507CC72B9BEEC7284" : "ilslib",
+    "066F4D81919596A1D0CEAB960979104E35418410" : "zcloud-sdk-ios"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Auth",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Auth.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "gitlab.ilegendsoft.com:zcloudsdk\/zcloud-sdk-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "066F4D81919596A1D0CEAB960979104E35418410"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:LeapAppServices\/LAS-Demo-Auth-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3FBBF00F08C9A14E322D2576B2C87E4B547DA349"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "gitlab.ilegendsoft.com:iosdev\/ilslib.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E4D582F7A3254EBC13D919F507CC72B9BEEC7284"
+    }
+  ]
+}

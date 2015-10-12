@@ -3,8 +3,8 @@
 
 #import "LoginViewController.h"
 #import "UserDetailsViewController.h"
-#import <LAS/LAS.h>
-#import <LASFacebookUtils/LASFacebookUtils.h>
+#import <MaxLeap/MaxLeap.h>
+#import <MLFacebookUtilsV4/MLFacebookUtils.h>
 
 @implementation LoginViewController
 
@@ -16,7 +16,7 @@
     self.title = @"Facebook Profile";
     
     // Check if user is cached and linked to Facebook, if so, bypass login    
-    if ([LASUser currentUser] && [LASFacebookUtils isLinkedWithUser:[LASUser currentUser]]) {
+    if ([MLUser currentUser] && [MLFacebookUtils isLinkedWithUser:[MLUser currentUser]]) {
         [self.navigationController pushViewController:[[UserDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:NO];
     }
 }
@@ -28,9 +28,10 @@
 - (IBAction)loginButtonTouchHandler:(id)sender  {
     // Set permissions required from the facebook user account
     NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
-    
+    FBSDKLoginManager *loginmanager= [[FBSDKLoginManager alloc]init];
+    [loginmanager logOut];
     // Login LASUser using facebook
-    [LASFacebookUtils logInWithPermissions:permissionsArray block:^(LASUser *user, NSError *error) {
+    [MLFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(MLUser *user, NSError *error) {
         [_activityIndicator stopAnimating]; // Hide loading indicator
         
         if (!user) {

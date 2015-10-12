@@ -3,7 +3,7 @@
 
 #import "UserDetailsViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import <LASFacebookUtils/LASFacebookUtils.h>
+#import <MLFacebookUtilsV4/MLFacebookUtils.h>
 
 @implementation UserDetailsViewController
 
@@ -31,13 +31,14 @@
     self.rowDataArray = [@[@"N/A", @"N/A", @"N/A", @"N/A"] mutableCopy];
     
     // If the user is already logged in, display any previously cached values before we get the latest from Facebook.
-    if ([LASUser currentUser]) {
+    if ([MLUser currentUser]) {
         [self updateProfile];
     }
     
     // Send request to Facebook
-    FBRequest *request = [FBRequest requestForMe];
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+    NSDictionary *fileds = @{@"fileds":@"id, name, location.name, gender, birthday, relationship_status"};
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:fileds];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         // handle response
         if (!error) {
             // LAS the data received
@@ -78,8 +79,8 @@
                 userProfile[@"pictureURL"] = [pictureURL absoluteString];
             }
             
-            [[LASUser currentUser] setObject:userProfile forKey:@"profile"];
-            [LASDataManager saveObjectInBackground:[LASUser currentUser] block:nil];
+            [[MLUser currentUser] setObject:userProfile forKey:@"profile"];
+            [[MLUser currentUser] saveInBackgroundWithBlock:nil];
             
             [self updateProfile];
         } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
@@ -99,8 +100,8 @@
 
 - (void)reauthenticate:(id)sender {
     
-    [LASFacebookUtils reauthorizeUser:[LASUser currentUser] withPublishPermissions:@[@"publish_actions"] audience:FBSessionDefaultAudienceEveryone block:^(BOOL succeeded, NSError *error) {
-        NSLog(@"reauthenticate success = %d, error = %@", succeeded, error);
+    [MLFacebookUtils logInInBackgroundWithPublishPermissions:@[@"publish_actions"] block:^(MLUser *user, NSError *error) {
+        NSLog(@"reauthenticate success = %d, error = %@", error==nil, error);
     }];
 }
 
@@ -171,7 +172,7 @@
 
 - (void)logoutButtonTouchHandler:(id)sender {
     // Logout user, this automatically clears the cache
-    [LASUserManager logOut];
+    [MLUser logOut];
     
     // Return to login view controller
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -179,34 +180,34 @@
 
 // Set received values if they are not nil and reload the table
 - (void)updateProfile {
-    if ([[LASUser currentUser] objectForKey:@"profile"][@"location"]) {
-        [self.rowDataArray replaceObjectAtIndex:0 withObject:[[LASUser currentUser] objectForKey:@"profile"][@"location"]];
+    if ([[MLUser currentUser] objectForKey:@"profile"][@"location"]) {
+        [self.rowDataArray replaceObjectAtIndex:0 withObject:[[MLUser currentUser] objectForKey:@"profile"][@"location"]];
     }
     
-    if ([[LASUser currentUser] objectForKey:@"profile"][@"gender"]) {
-        [self.rowDataArray replaceObjectAtIndex:1 withObject:[[LASUser currentUser] objectForKey:@"profile"][@"gender"]];
+    if ([[MLUser currentUser] objectForKey:@"profile"][@"gender"]) {
+        [self.rowDataArray replaceObjectAtIndex:1 withObject:[[MLUser currentUser] objectForKey:@"profile"][@"gender"]];
     }
     
-    if ([[LASUser currentUser] objectForKey:@"profile"][@"birthday"]) {
-        [self.rowDataArray replaceObjectAtIndex:2 withObject:[[LASUser currentUser] objectForKey:@"profile"][@"birthday"]];
+    if ([[MLUser currentUser] objectForKey:@"profile"][@"birthday"]) {
+        [self.rowDataArray replaceObjectAtIndex:2 withObject:[[MLUser currentUser] objectForKey:@"profile"][@"birthday"]];
     }
     
-    if ([[LASUser currentUser] objectForKey:@"profile"][@"relationship"]) {
-        [self.rowDataArray replaceObjectAtIndex:3 withObject:[[LASUser currentUser] objectForKey:@"profile"][@"relationship"]];
+    if ([[MLUser currentUser] objectForKey:@"profile"][@"relationship"]) {
+        [self.rowDataArray replaceObjectAtIndex:3 withObject:[[MLUser currentUser] objectForKey:@"profile"][@"relationship"]];
     }
     
     [self.tableView reloadData];
     
     // Set the name in the header view label
-    if ([[LASUser currentUser] objectForKey:@"profile"][@"name"]) {
-        self.headerNameLabel.text = [[LASUser currentUser] objectForKey:@"profile"][@"name"];
+    if ([[MLUser currentUser] objectForKey:@"profile"][@"name"]) {
+        self.headerNameLabel.text = [[MLUser currentUser] objectForKey:@"profile"][@"name"];
     }
     
     // Download the user's facebook profile picture
     self.imageData = [[NSMutableData alloc] init]; // the data will be loaded in here
     
-    if ([[LASUser currentUser] objectForKey:@"profile"][@"pictureURL"]) {
-        NSURL *pictureURL = [NSURL URLWithString:[[LASUser currentUser] objectForKey:@"profile"][@"pictureURL"]];
+    if ([[MLUser currentUser] objectForKey:@"profile"][@"pictureURL"]) {
+        NSURL *pictureURL = [NSURL URLWithString:[[MLUser currentUser] objectForKey:@"profile"][@"pictureURL"]];
         
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
                                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy

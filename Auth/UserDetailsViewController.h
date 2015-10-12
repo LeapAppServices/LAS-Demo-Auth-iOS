@@ -1,7 +1,7 @@
 //
 //  Copyright (c) 2015 LAS. All rights reserved.
 
-#import <LAS/LAS.h>
+#import <MaxLeap/MaxLeap.h>
 
 @interface UserDetailsViewController : UITableViewController <NSURLConnectionDelegate>
 

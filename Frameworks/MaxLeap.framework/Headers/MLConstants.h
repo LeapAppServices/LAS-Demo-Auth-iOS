@@ -13,6 +13,22 @@
 #define MaxLeap_VERSION @"2.0.1"
 
 ///--------------------------------------
+/// @name MaxLeap Sites
+///--------------------------------------
+
+/**
+ * This enum represents MaxLeap server location.
+ */
+typedef NS_ENUM(int, MaxLeapSite) {
+    
+    /** Use servers in US. */
+    MaxLeapSiteUS = 0,
+    
+    /** Use servers in CN. */
+    MaxLeapSiteCN = 1
+};
+
+///--------------------------------------
 /// @name Errors
 ///--------------------------------------
 

@@ -41,10 +41,21 @@
 /**
  *  Sets the applicationId and clientKey of your application.
  *
+ *  Default is the US deployment. MaxLeap Analytics is also initialized.
+ *
  *  @param applicationId The application id for your MaxLeap application.
  *  @param clientKey     The client key for your MaxLeap application.
  */
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
+
+/**
+ *  Sets the applicationId and clientKey of your application.
+ *
+ *  @param applicationId The application id for your MaxLeap application.
+ *  @param clientKey     The client key for your MaxLeap application.
+ *  @param site          One of the enumerator constants MaxLeapSiteUS (United States), MaxLeapSiteCN (Japan) based on your desired location.
+ */
++ (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey site:(MaxLeapSite)site;
 
 /*!
  The current application id that was used to configure MaxLeap framework.

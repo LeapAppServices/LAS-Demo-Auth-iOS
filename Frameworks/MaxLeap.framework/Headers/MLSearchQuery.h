@@ -2,15 +2,14 @@
 //  MLSearchQuery.h
 //  MaxLeap
 //
-//  Created by Sun Jin on 12/1/14.
-//  Copyright (c) 2014 iLegendsoft. All rights reserved.
-//
 
 #ifdef EXTENSION_IOS
     #import <MaxLeapExt/MLConstants.h>
 #else
     #import <MaxLeap/MLConstants.h>
 #endif
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  An object represents an elastic search query object.
@@ -63,7 +62,7 @@
  
  @return A search query instance.
  */
-+ (instancetype)queryWithQueryDictionary:(NSDictionary *)queryDictionary sortElement:(NSArray *)sortElement;
++ (instancetype)queryWithQueryDictionary:(NSDictionary *)queryDictionary sortElement:(nullable NSArray *)sortElement;
 
 /**
  *  Create a SearchQuery using a complete search `query` element.
@@ -78,16 +77,24 @@
  */
 + (instancetype)queryWithDictionary:(NSDictionary *)dictionary;
 
-@property (nonatomic, strong) NSArray *classNames;
+/*! the query target classes, if empty, the search will perform on all classes */
+@property (nonatomic, strong, nullable) NSArray *classNames;
 
-// Pagination of results can be done by using the from and size parameters.
+/*! Pagination of results can be done by using the from and size parameters.*/
 
-// The from parameter defines the offset from the first result you want to fetch.
+/*! The from parameter defines the offset from the first result you want to fetch. */
 @property (nonatomic) NSInteger from;
 
-// The size parameter allows you to configure the maximum amount of hits to be returned.
+/*! The size parameter allows you to configure the maximum amount of hits to be returned. */
 @property (nonatomic) NSInteger size;
 
-- (void)findObjectsInBackgroundWithBlock:(MLDictionaryResultBlock)block;
+/**
+ *  Finds objects asynchronously and calls the given block with the results.
+ *
+ *  @param block The block to execute. The block should have the following argument signature:(NSDictionary *objects, NSError *error)
+ */
+- (void)findObjectsInBackgroundWithBlock:(nullable MLDictionaryResultBlock)block;
 
 @end
+
+NS_ASSUME_NONNULL_END

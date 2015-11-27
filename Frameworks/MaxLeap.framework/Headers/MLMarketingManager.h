@@ -2,12 +2,11 @@
 //  MLMarketingManager.h
 //  MaxLeap
 //
-//  Created by Sun Jin on 5/29/15.
-//  Copyright (c) 2015 leapas. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  The dissmiss button on in-app message view is always on top.
@@ -52,7 +51,7 @@ typedef NS_ENUM(NSUInteger, MLInAppMessageDismissButtonLocation){
 /** Used to record performance data for push notifications
  @param notificationInfo The dictionary from `didFinishLaunchingWithOptions:` should be passed on to this method
  */
-+ (void)handlePushNotificationOpened:(NSDictionary *)notificationInfo;
++ (void)handlePushNotificationOpened:(nullable NSDictionary *)notificationInfo;
 
 #pragma mark - In-App Message
 ///--------------------------------------
@@ -86,9 +85,12 @@ typedef NS_ENUM(NSUInteger, MLInAppMessageDismissButtonLocation){
  */
 + (MLInAppMessageDismissButtonLocation)inAppMessageDismissButtonLocation;
 
+#pragma mark - In-App Message Debugging
 + (void)triggerInAppMessage:(NSString *)triggerName;
-+ (void)triggerInAppMessage:(NSString *)triggerName withAttributes:(NSDictionary<NSString*, NSString*> *)attributes;
++ (void)triggerInAppMessage:(NSString *)triggerName withAttributes:(nullable NSDictionary<NSString*, NSString*> *)attributes;
 
 + (void)dismissCurrentInAppMessage;
 
 @end
+
+NS_ASSUME_NONNULL_END

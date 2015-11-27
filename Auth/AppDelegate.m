@@ -2,35 +2,38 @@
 //  Copyright (c) 2015 LAS. All rights reserved.
 
 #import "AppDelegate.h"
+#import "WeiboSDKDelegate.h"
+#import "WeChatSDKDelegate.h"
 
 #import <MaxLeap/MaxLeap.h>
 #import <MLFacebookUtilsV4/MLFacebookUtils.h>
-
-#import "LoginViewController.h"
+#import <MLWeiboUtils/MLWeiboUtils.h>
+#import <MLWeChatUtils/MLWeChatUtils.h>
 
 @implementation AppDelegate
-
 
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // ****************************************************************************
     // Uncommit fill in with your MaxLeap credentials:
     // ****************************************************************************
 #warning Please fill in with your MaxLeap credentials
-    // [MaxLeap setApplicationId:@"APPLICATION_ID_HERE" clientKey:@"CLIENT_KEY_HERE"];
+    // [MaxLeap setApplicationId:@"APPLICATION_ID_HERE" clientKey:@"CLIENT_KEY_HERE" site:SITE];
+    [MaxLeap setApplicationId:@"55b202f760b2173daeff03b1" clientKey:@"Yy1VSEJlUHNnQzFRcHBudTAzWGhSdw" site:MLSiteUS];
     
     // ****************************************************************************
     // Make sure your Facebook application id is configured in Info.plist.
     // ****************************************************************************
     [MLFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
-
+    
+    [MLWeiboUtils initializeWeiboWithAppKey:@"2328234403" redirectURI:@"https://api.weibo.com/oauth2/default.html"];
+    
+    [MLWeChatUtils initializeWeChatWithAppId:@"wx41b6f4bde79513c8" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" wxDelegate:[WeChatSDKDelegate sharedInstance]];
+    
     // Override point for customization after application launch.
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -38,7 +41,20 @@
 // App switching methods to support Facebook Single Sign-On.
 // ****************************************************************************
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    BOOL facebook = [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    BOOL weibo = [WeiboSDK handleOpenURL:url delegate:[WeiboSDKDelegate sharedInstance]];
+    BOOL wechat = [WXApi handleOpenURL:url delegate:[WeChatSDKDelegate sharedInstance]];
+    return facebook || weibo || wechat;
+}
+
+// iOS 9
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
+    NSString *sourceApplication = options[UIApplicationLaunchOptionsSourceApplicationKey];
+    id annotation = options[UIApplicationLaunchOptionsAnnotationKey];
+    BOOL facebook = [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    BOOL weibo = [WeiboSDK handleOpenURL:url delegate:[WeiboSDKDelegate sharedInstance]];
+    BOOL wechat = [WXApi handleOpenURL:url delegate:[WeChatSDKDelegate sharedInstance]];
+    return facebook || weibo || wechat;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

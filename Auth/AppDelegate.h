@@ -3,6 +3,6 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nullable, nonatomic, strong) UIWindow *window;
 
 @end

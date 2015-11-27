@@ -4,117 +4,97 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/MLACL.h</key>
-		<data>
-		6VDq2hspxWIicFa7RjZthvjXxz0=
-		</data>
-		<key>Headers/MLACurrency.h</key>
-		<data>
-		cjMkCLT+M9L88JgUNFFObn6dCeg=
-		</data>
 		<key>Headers/MLAnalytics.h</key>
 		<data>
-		GMFFKNegsNXJUssF8WhZrHjTdBI=
+		npI63Q/jTMkvU3ZT3RiKbZeUA0Y=
 		</data>
 		<key>Headers/MLAnonymousUtils.h</key>
 		<data>
-		3+RNFuMgbse25u7c6Gk4DWXvRss=
+		t6uEB7yl/QtZ0kM77YTYL+No9cg=
 		</data>
 		<key>Headers/MLCloudCode.h</key>
 		<data>
-		S1WXjKuILPYwciv1BjnKPe+ZhD8=
+		MDJduRRffHWAX9rb2Iwu3VJ8GrA=
 		</data>
 		<key>Headers/MLConfig.h</key>
 		<data>
-		fX8W0Sp29A9HRw3JS14DxCoWhY8=
+		O12CQNo/doezBCio5EvIPKH0gs0=
 		</data>
 		<key>Headers/MLConstants.h</key>
 		<data>
-		KxInjX4hN7Uu93La0gx2RTffiRE=
+		JIzb1VnOa2zoXVQY0jEY1eTPogE=
 		</data>
 		<key>Headers/MLEmail.h</key>
 		<data>
-		6RD2Y7QfbVHdsy8xx5ZfMyQnDp4=
+		bEXjY3GUTD3XgHKScDcchDoQ8UM=
 		</data>
 		<key>Headers/MLFile.h</key>
 		<data>
-		rT9xkGgUFrdz0L3VSPY5rUgPWBQ=
+		rnGJXbC0VPC0XlRtBOvqKZznQ4k=
 		</data>
-		<key>Headers/MLGAItem.h</key>
+		<key>Headers/MLGameAnalytics.h</key>
 		<data>
-		G/EU831IuZT8W3pFis1Ry8e4p3A=
-		</data>
-		<key>Headers/MLGAMission.h</key>
-		<data>
-		kpcEmPcE0JSnu/2BORji/x2HTfQ=
-		</data>
-		<key>Headers/MLGAVirtureCurrency.h</key>
-		<data>
-		A1t4B7iiBp1DnObhreaTc1+jCp8=
+		aN5bM1RikIiS0VR4Dte++WMN4yc=
 		</data>
 		<key>Headers/MLGeoPoint.h</key>
 		<data>
-		mTesFgLr8cxFAFq5fX5UIcrHxWA=
+		tepUXF8kPnCCEzebqefl8vyCqdY=
 		</data>
 		<key>Headers/MLInstallation.h</key>
 		<data>
-		iLf++xmcXuUgK19xfZjXyDHIrxw=
+		8Ifx8WXiuHIAGu64IUq0SphLjI8=
 		</data>
 		<key>Headers/MLLogger.h</key>
 		<data>
-		+1UIeg+0COuRFCWFsGqJurMJ+jo=
+		eov0JjEpJY7vajfYRHblsGJo+NM=
 		</data>
 		<key>Headers/MLMarketingManager.h</key>
 		<data>
-		U6gGoCRQSm21SauYRQLJw0dysbw=
+		J/RZrCleGReTxqetLSpw8lnxpcQ=
 		</data>
 		<key>Headers/MLObject+Subclass.h</key>
 		<data>
-		ROuVgvvctGqbFG5PUPwlgqjju9g=
+		UZQG1EHC9s6KP8qF5ZUVPsppTEE=
 		</data>
 		<key>Headers/MLObject.h</key>
 		<data>
-		nwEt2EwuRyMCn8sOXgug/LBeZdg=
-		</data>
-		<key>Headers/MLPassport.h</key>
-		<data>
-		HabXjP3MPRxgEg4xwvDIaEUgH98=
+		oC8LEz/krjKcHyMqEbPkwUas47s=
 		</data>
 		<key>Headers/MLPrivateFile.h</key>
 		<data>
-		O3bexbdK+khxGuX1I6Za4UMI60A=
+		/D5RKrHGwkzs320uxGZw76CVgdY=
 		</data>
 		<key>Headers/MLQuery.h</key>
 		<data>
-		4skcGfJMahyzeXuxEKjnPhzhVns=
+		5a4g0qSOo7h6aGY8Focn9De+Jfc=
 		</data>
 		<key>Headers/MLReceiptManager.h</key>
 		<data>
-		pPfaD6ItaBPQjoLylCboljbcRWg=
+		hPQFlyptWkURFTjq4XFeBp/3ljA=
 		</data>
 		<key>Headers/MLRelation.h</key>
 		<data>
-		J9npt8hOAX345kMe4IGrd3BtM/k=
+		39ylw4o0hxqTRZVd9UhgJ54Gv5M=
 		</data>
 		<key>Headers/MLSearchQuery.h</key>
 		<data>
-		lCMEM9vbInUSNpvtRNmia42GrlY=
+		h5qx3mQ2Jq38I0frtU09+/y7v88=
 		</data>
 		<key>Headers/MLSubclassing.h</key>
 		<data>
-		RHTgJ54hDlLH5u8cgjxI1QZ844A=
+		pZ5n7TvZHeh3UJ8Yo8J27K4buNs=
 		</data>
 		<key>Headers/MLUser.h</key>
 		<data>
-		l6yp0hwzDjyAglw0wUGDG2aQ3Z0=
+		gczdrbkNuBwsWlUStftXwXg1Mug=
 		</data>
 		<key>Headers/MaxLeap.h</key>
 		<data>
-		5fe4z+zTyP1xnjFWG8KTUabeMzs=
+		9C9wOL1HvuW7vVh07xOFoiH/eaQ=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		At7z13tw8rkEZpIf01lEs8wVigY=
+		U43Z4cY4aw4E7yB6engyrJfW3Is=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -122,11 +102,15 @@
 		</data>
 		<key>PrivateHeaders/INTULocationManagerFix.h</key>
 		<data>
-		1R2fze8Va6Vtj6Oy2eFGY6CiWMI=
+		ThluemG6SHYdcO9jFd7SsON4GNs=
 		</data>
 		<key>PrivateHeaders/INTULocationRequestDefines.h</key>
 		<data>
 		8u0g4RtijXRn46jG6yVnl1zhKmM=
+		</data>
+		<key>PrivateHeaders/MLDevice.h</key>
+		<data>
+		315lJ16KSVzIeRGP8g3z2giuwaw=
 		</data>
 		<key>PrivateHeaders/MLFileHash.h</key>
 		<data>
@@ -134,11 +118,11 @@
 		</data>
 		<key>PrivateHeaders/MLObjectOfflineCoder.h</key>
 		<data>
-		3nr4OgYxRm764Q2WID4YwE25F+A=
+		0WwCTa1oIt8roppbIZXSDtUOsgk=
 		</data>
 		<key>PrivateHeaders/MLSQLiteManager.h</key>
 		<data>
-		HUqdD/N6eft7oTQ93fNvqcHAoYc=
+		AfDB+E5TSp1Z3WRyXFFfUID9Vvg=
 		</data>
 		<key>PrivateHeaders/MLUnzip.h</key>
 		<data>
@@ -162,7 +146,7 @@
 		</data>
 		<key>PrivateHeaders/SSKeychainFix.h</key>
 		<data>
-		2IfQD+fTZEYkY5e+M7WVKF9waQw=
+		VG6a9o3BY6//qiHd1ncsFvzzFzY=
 		</data>
 		<key>en.lproj/SSKeychain.strings</key>
 		<dict>
@@ -176,113 +160,93 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/MLACL.h</key>
-		<data>
-		6VDq2hspxWIicFa7RjZthvjXxz0=
-		</data>
-		<key>Headers/MLACurrency.h</key>
-		<data>
-		cjMkCLT+M9L88JgUNFFObn6dCeg=
-		</data>
 		<key>Headers/MLAnalytics.h</key>
 		<data>
-		GMFFKNegsNXJUssF8WhZrHjTdBI=
+		npI63Q/jTMkvU3ZT3RiKbZeUA0Y=
 		</data>
 		<key>Headers/MLAnonymousUtils.h</key>
 		<data>
-		3+RNFuMgbse25u7c6Gk4DWXvRss=
+		t6uEB7yl/QtZ0kM77YTYL+No9cg=
 		</data>
 		<key>Headers/MLCloudCode.h</key>
 		<data>
-		S1WXjKuILPYwciv1BjnKPe+ZhD8=
+		MDJduRRffHWAX9rb2Iwu3VJ8GrA=
 		</data>
 		<key>Headers/MLConfig.h</key>
 		<data>
-		fX8W0Sp29A9HRw3JS14DxCoWhY8=
+		O12CQNo/doezBCio5EvIPKH0gs0=
 		</data>
 		<key>Headers/MLConstants.h</key>
 		<data>
-		KxInjX4hN7Uu93La0gx2RTffiRE=
+		JIzb1VnOa2zoXVQY0jEY1eTPogE=
 		</data>
 		<key>Headers/MLEmail.h</key>
 		<data>
-		6RD2Y7QfbVHdsy8xx5ZfMyQnDp4=
+		bEXjY3GUTD3XgHKScDcchDoQ8UM=
 		</data>
 		<key>Headers/MLFile.h</key>
 		<data>
-		rT9xkGgUFrdz0L3VSPY5rUgPWBQ=
+		rnGJXbC0VPC0XlRtBOvqKZznQ4k=
 		</data>
-		<key>Headers/MLGAItem.h</key>
+		<key>Headers/MLGameAnalytics.h</key>
 		<data>
-		G/EU831IuZT8W3pFis1Ry8e4p3A=
-		</data>
-		<key>Headers/MLGAMission.h</key>
-		<data>
-		kpcEmPcE0JSnu/2BORji/x2HTfQ=
-		</data>
-		<key>Headers/MLGAVirtureCurrency.h</key>
-		<data>
-		A1t4B7iiBp1DnObhreaTc1+jCp8=
+		aN5bM1RikIiS0VR4Dte++WMN4yc=
 		</data>
 		<key>Headers/MLGeoPoint.h</key>
 		<data>
-		mTesFgLr8cxFAFq5fX5UIcrHxWA=
+		tepUXF8kPnCCEzebqefl8vyCqdY=
 		</data>
 		<key>Headers/MLInstallation.h</key>
 		<data>
-		iLf++xmcXuUgK19xfZjXyDHIrxw=
+		8Ifx8WXiuHIAGu64IUq0SphLjI8=
 		</data>
 		<key>Headers/MLLogger.h</key>
 		<data>
-		+1UIeg+0COuRFCWFsGqJurMJ+jo=
+		eov0JjEpJY7vajfYRHblsGJo+NM=
 		</data>
 		<key>Headers/MLMarketingManager.h</key>
 		<data>
-		U6gGoCRQSm21SauYRQLJw0dysbw=
+		J/RZrCleGReTxqetLSpw8lnxpcQ=
 		</data>
 		<key>Headers/MLObject+Subclass.h</key>
 		<data>
-		ROuVgvvctGqbFG5PUPwlgqjju9g=
+		UZQG1EHC9s6KP8qF5ZUVPsppTEE=
 		</data>
 		<key>Headers/MLObject.h</key>
 		<data>
-		nwEt2EwuRyMCn8sOXgug/LBeZdg=
-		</data>
-		<key>Headers/MLPassport.h</key>
-		<data>
-		HabXjP3MPRxgEg4xwvDIaEUgH98=
+		oC8LEz/krjKcHyMqEbPkwUas47s=
 		</data>
 		<key>Headers/MLPrivateFile.h</key>
 		<data>
-		O3bexbdK+khxGuX1I6Za4UMI60A=
+		/D5RKrHGwkzs320uxGZw76CVgdY=
 		</data>
 		<key>Headers/MLQuery.h</key>
 		<data>
-		4skcGfJMahyzeXuxEKjnPhzhVns=
+		5a4g0qSOo7h6aGY8Focn9De+Jfc=
 		</data>
 		<key>Headers/MLReceiptManager.h</key>
 		<data>
-		pPfaD6ItaBPQjoLylCboljbcRWg=
+		hPQFlyptWkURFTjq4XFeBp/3ljA=
 		</data>
 		<key>Headers/MLRelation.h</key>
 		<data>
-		J9npt8hOAX345kMe4IGrd3BtM/k=
+		39ylw4o0hxqTRZVd9UhgJ54Gv5M=
 		</data>
 		<key>Headers/MLSearchQuery.h</key>
 		<data>
-		lCMEM9vbInUSNpvtRNmia42GrlY=
+		h5qx3mQ2Jq38I0frtU09+/y7v88=
 		</data>
 		<key>Headers/MLSubclassing.h</key>
 		<data>
-		RHTgJ54hDlLH5u8cgjxI1QZ844A=
+		pZ5n7TvZHeh3UJ8Yo8J27K4buNs=
 		</data>
 		<key>Headers/MLUser.h</key>
 		<data>
-		l6yp0hwzDjyAglw0wUGDG2aQ3Z0=
+		gczdrbkNuBwsWlUStftXwXg1Mug=
 		</data>
 		<key>Headers/MaxLeap.h</key>
 		<data>
-		5fe4z+zTyP1xnjFWG8KTUabeMzs=
+		9C9wOL1HvuW7vVh07xOFoiH/eaQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -290,11 +254,15 @@
 		</data>
 		<key>PrivateHeaders/INTULocationManagerFix.h</key>
 		<data>
-		1R2fze8Va6Vtj6Oy2eFGY6CiWMI=
+		ThluemG6SHYdcO9jFd7SsON4GNs=
 		</data>
 		<key>PrivateHeaders/INTULocationRequestDefines.h</key>
 		<data>
 		8u0g4RtijXRn46jG6yVnl1zhKmM=
+		</data>
+		<key>PrivateHeaders/MLDevice.h</key>
+		<data>
+		315lJ16KSVzIeRGP8g3z2giuwaw=
 		</data>
 		<key>PrivateHeaders/MLFileHash.h</key>
 		<data>
@@ -302,11 +270,11 @@
 		</data>
 		<key>PrivateHeaders/MLObjectOfflineCoder.h</key>
 		<data>
-		3nr4OgYxRm764Q2WID4YwE25F+A=
+		0WwCTa1oIt8roppbIZXSDtUOsgk=
 		</data>
 		<key>PrivateHeaders/MLSQLiteManager.h</key>
 		<data>
-		HUqdD/N6eft7oTQ93fNvqcHAoYc=
+		AfDB+E5TSp1Z3WRyXFFfUID9Vvg=
 		</data>
 		<key>PrivateHeaders/MLUnzip.h</key>
 		<data>
@@ -330,7 +298,7 @@
 		</data>
 		<key>PrivateHeaders/SSKeychainFix.h</key>
 		<data>
-		2IfQD+fTZEYkY5e+M7WVKF9waQw=
+		VG6a9o3BY6//qiHd1ncsFvzzFzY=
 		</data>
 		<key>en.lproj/SSKeychain.strings</key>
 		<dict>

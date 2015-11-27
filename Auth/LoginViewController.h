@@ -8,6 +8,4 @@
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 
-- (IBAction)loginButtonTouchHandler:(id)sender;
-
 @end

@@ -90,7 +90,7 @@
 		<key>appInfo</key>
 		<dict>
 			<key>ILSConnectEnvironment</key>
-			<string>pro</string>
+			<string>uat</string>
 			<key>disableLASHttps</key>
 			<true/>
 		</dict>

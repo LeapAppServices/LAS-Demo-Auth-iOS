@@ -21,7 +21,8 @@
     // ****************************************************************************
 #warning Please fill in with your MaxLeap credentials
     // [MaxLeap setApplicationId:@"APPLICATION_ID_HERE" clientKey:@"CLIENT_KEY_HERE" site:SITE];
-    [MaxLeap setApplicationId:@"55b202f760b2173daeff03b1" clientKey:@"Yy1VSEJlUHNnQzFRcHBudTAzWGhSdw" site:MLSiteUS];
+//    [MaxLeap setApplicationId:@"55b202f760b2173daeff03b1" clientKey:@"Yy1VSEJlUHNnQzFRcHBudTAzWGhSdw" site:MLSiteUS];
+    [MaxLeap setApplicationId:@"5590e80460b20e0cc25c7536" clientKey:@"Z2ZVdnVXY2haSTM4X19ORWRTME50dw" site:MLSiteUS];
     
     // ****************************************************************************
     // Make sure your Facebook application id is configured in Info.plist.

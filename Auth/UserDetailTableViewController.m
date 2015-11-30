@@ -2,17 +2,21 @@
 //  UserDetailTableViewController.m
 //  Auth
 //
-//  Created by Sun Jin on 11/27/15.
-//
-//
 
 #import "UserDetailTableViewController.h"
+#import "TrdPartyProfileViewController.h"
 
 @interface UserDetailTableViewController ()
 @property (nonatomic, strong) NSArray *platforms;
 @end
 
 @implementation UserDetailTableViewController
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.platforms = @[@"Facebook Profile", @"Weibo Profile", @"WeChat Profile"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,9 +27,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.navigationItem.backBarButtonItem = nil;
+    // Add logout navigation bar button
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Log Out" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTouchHandler:)];
+    self.navigationItem.leftBarButtonItem = logoutButton;
+}
+
+- (void)logoutButtonTouchHandler:(id)sender {
+    // Logout user, this automatically clears the cache
+    [MLUser logOut];
     
-    self.platforms = @[@"Facebook Profile", @"Weibo Profile", @"WeChat Profile"];
+    // Return to login view controller
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,14 +94,16 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"show3rdPartyProfile"]) {
+        TrdPartyProfileViewController *controller = (TrdPartyProfileViewController *)segue.destinationViewController;
+        controller.platform = self.platforms[[[self.tableView indexPathForSelectedRow] row]];
+    }
 }
-*/
 
 @end

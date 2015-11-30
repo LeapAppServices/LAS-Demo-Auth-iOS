@@ -5,6 +5,8 @@
 
 @interface TrdPartyProfileViewController : UITableViewController <NSURLConnectionDelegate>
 
+@property (nonatomic, copy) NSString *platform;
+
 // UITableView header view properties
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UILabel *headerNameLabel;
@@ -14,8 +16,5 @@
 @property (nonatomic, strong) NSArray *rowTitleArray;
 @property (nonatomic, strong) NSMutableArray *rowDataArray;
 @property (nonatomic, strong) NSMutableData *imageData;
-
-// UINavigationBar button touch handler
-- (void)logoutButtonTouchHandler:(id)sender;
 
 @end

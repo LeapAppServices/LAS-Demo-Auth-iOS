@@ -4,6 +4,11 @@
 #import "TrdPartyProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <MLFacebookUtilsV4/MLFacebookUtils.h>
+#import <MLWeiboUtils/MLWeiboUtils.h>
+#import <MLWeChatUtils/MLWeChatUtils.h>
+#import "WBHttpRequest+WeiboUser.h"
+#import "WeiboUser.h"
+#import "WXApi.h"
 
 @implementation TrdPartyProfileViewController
 
@@ -16,93 +21,28 @@
     self.title = @"Facebook Profile";
     self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
     
-    // Add logout navigation bar button
-    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Log Out" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTouchHandler:)];
-    self.navigationItem.leftBarButtonItem = logoutButton;
-    
     // Load table header view from nib
     [[NSBundle mainBundle] loadNibNamed:@"TableHeaderView" owner:self options:nil];
     self.tableView.tableHeaderView = self.headerView;
     
     // Create array for table row titles
-    self.rowTitleArray = @[@"Location", @"Gender", @"Date of Birth", @"Relationship"];
+    self.rowTitleArray = @[@"Location", @"Gender"];
     
     // Set default values for the table row data
-    self.rowDataArray = [@[@"N/A", @"N/A", @"N/A", @"N/A"] mutableCopy];
+    self.rowDataArray = [@[@"N/A", @"N/A"] mutableCopy];
     
     // If the user is already logged in, display any previously cached values before we get the latest from Facebook.
     if ([MLUser currentUser]) {
         [self updateProfile];
     }
     
-    // Send request to Facebook
-    NSDictionary *fileds = @{@"fileds":@"id, name, location.name, gender, birthday, relationship_status"};
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:fileds];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-        // handle response
-        if (!error) {
-            // LAS the data received
-            NSDictionary *userData = (NSDictionary *)result;
-            
-            NSString *facebookID = userData[@"id"];
-            
-            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
-            
-            
-            NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:7];
-            
-            if (facebookID) {
-                userProfile[@"facebookId"] = facebookID;
-            }
-            
-            if (userData[@"name"]) {
-                userProfile[@"name"] = userData[@"name"];
-            }
-            
-            if (userData[@"location"][@"name"]) {
-                userProfile[@"location"] = userData[@"location"][@"name"];
-            }
-            
-            if (userData[@"gender"]) {
-                userProfile[@"gender"] = userData[@"gender"];
-            }
-            
-            if (userData[@"birthday"]) {
-                userProfile[@"birthday"] = userData[@"birthday"];
-            }
-            
-            if (userData[@"relationship_status"]) {
-                userProfile[@"relationship"] = userData[@"relationship_status"];
-            }
-            
-            if ([pictureURL absoluteString]) {
-                userProfile[@"pictureURL"] = [pictureURL absoluteString];
-            }
-            
-            [[MLUser currentUser] setObject:userProfile forKey:@"profile"];
-            [[MLUser currentUser] saveInBackgroundWithBlock:nil];
-            
-            [self updateProfile];
-        } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
-                    isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
-            NSLog(@"The facebook session was invalidated");
-            [self logoutButtonTouchHandler:nil];
-        } else {
-            NSLog(@"Some other error: %@", error);
-        }
-    }];
-    
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"Reauth" style:UIBarButtonItemStyleBordered target:self action:@selector(reauthenticate:)];
-    self.navigationItem.rightBarButtonItem = rightItem;
-}
-
-
-- (void)reauthenticate:(id)sender {
-    
-    [MLFacebookUtils logInInBackgroundWithPublishPermissions:@[@"publish_actions"] block:^(MLUser *user, NSError *error) {
-        NSLog(@"reauthenticate success = %d, error = %@", error==nil, error);
-    }];
+    if ([self.platform isEqualToString:@"Facebook Profile"]) {
+        [self refreshFacebookProfile];
+    } else if ([self.platform isEqualToString:@"Weibo Profile"]) {
+        [self refreshWeiboProfile];
+    } else if ([self.platform isEqualToString:@"WeChat Profile"]) {
+        [self refreshWechatProfile];
+    }
 }
 
 #pragma mark - NSURLConnectionDataDelegate
@@ -170,44 +110,37 @@
 
 #pragma mark - ()
 
-- (void)logoutButtonTouchHandler:(id)sender {
-    // Logout user, this automatically clears the cache
-    [MLUser logOut];
-    
-    // Return to login view controller
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 // Set received values if they are not nil and reload the table
 - (void)updateProfile {
-    if ([[MLUser currentUser] objectForKey:@"profile"][@"location"]) {
-        [self.rowDataArray replaceObjectAtIndex:0 withObject:[[MLUser currentUser] objectForKey:@"profile"][@"location"]];
+    NSDictionary *profile = nil;
+    if ([self.platform isEqualToString:@"Facebook Profile"]) {
+        profile = [MLUser currentUser][@"facebookProfile"];
+    } else if ([self.platform isEqualToString:@"Weibo Profile"]) {
+        profile = [MLUser currentUser][@"weiboProfile"];
+    } else if ([self.platform isEqualToString:@"WeChat Profile"]) {
+        profile = [MLUser currentUser][@"wechatProfile"];
     }
     
-    if ([[MLUser currentUser] objectForKey:@"profile"][@"gender"]) {
-        [self.rowDataArray replaceObjectAtIndex:1 withObject:[[MLUser currentUser] objectForKey:@"profile"][@"gender"]];
+    if (profile[@"location"]) {
+        [self.rowDataArray replaceObjectAtIndex:0 withObject:profile[@"location"]];
     }
     
-    if ([[MLUser currentUser] objectForKey:@"profile"][@"birthday"]) {
-        [self.rowDataArray replaceObjectAtIndex:2 withObject:[[MLUser currentUser] objectForKey:@"profile"][@"birthday"]];
-    }
-    
-    if ([[MLUser currentUser] objectForKey:@"profile"][@"relationship"]) {
-        [self.rowDataArray replaceObjectAtIndex:3 withObject:[[MLUser currentUser] objectForKey:@"profile"][@"relationship"]];
+    if (profile[@"gender"]) {
+        [self.rowDataArray replaceObjectAtIndex:1 withObject:profile[@"gender"]];
     }
     
     [self.tableView reloadData];
     
     // Set the name in the header view label
-    if ([[MLUser currentUser] objectForKey:@"profile"][@"name"]) {
-        self.headerNameLabel.text = [[MLUser currentUser] objectForKey:@"profile"][@"name"];
+    if (profile[@"name"]) {
+        self.headerNameLabel.text = profile[@"name"];
     }
     
     // Download the user's facebook profile picture
     self.imageData = [[NSMutableData alloc] init]; // the data will be loaded in here
     
-    if ([[MLUser currentUser] objectForKey:@"profile"][@"pictureURL"]) {
-        NSURL *pictureURL = [NSURL URLWithString:[[MLUser currentUser] objectForKey:@"profile"][@"pictureURL"]];
+    if (profile[@"pictureURL"]) {
+        NSURL *pictureURL = [NSURL URLWithString:profile[@"pictureURL"]];
         
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
                                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -218,6 +151,166 @@
             NSLog(@"Failed to download picture");
         }
     }
+}
+
+#pragma mark -
+#pragma mark Facebook
+
+- (void)refreshFacebookProfile {
+    // Send request to Facebook
+    NSDictionary *fileds = @{@"fileds":@"id, name, location.name, gender, birthday, relationship_status"};
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:fileds];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        // handle response
+        if (!error) {
+            // LAS the data received
+            NSDictionary *userData = (NSDictionary *)result;
+            
+            NSString *facebookID = userData[@"id"];
+            
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            
+            
+            NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:7];
+            
+            if (facebookID) {
+                userProfile[@"userId"] = facebookID;
+            }
+            
+            if (userData[@"name"]) {
+                userProfile[@"name"] = userData[@"name"];
+            }
+            
+            if (userData[@"location"][@"name"]) {
+                userProfile[@"location"] = userData[@"location"][@"name"];
+            }
+            
+            if (userData[@"gender"]) {
+                userProfile[@"gender"] = userData[@"gender"];
+            }
+            
+            if ([pictureURL absoluteString]) {
+                userProfile[@"pictureURL"] = [pictureURL absoluteString];
+            }
+            
+            [[MLUser currentUser] setObject:userProfile forKey:@"facebookProfile"];
+            [[MLUser currentUser] saveInBackgroundWithBlock:nil];
+            
+            [self updateProfile];
+        } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
+                    isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
+            NSLog(@"The facebook session was invalidated");
+        } else {
+            NSLog(@"Some other error: %@", error);
+        }
+    }];
+}
+
+#pragma mark -
+#pragma mark Weibo
+
+- (void)refreshWeiboProfile {
+    MLWeiboAccessToken *token = [MLWeiboAccessToken currentAccessToken];
+    if (!token) {
+        return;
+    }
+    [WBHttpRequest requestForUserProfile:token.userID
+                         withAccessToken:token.accessToken
+                      andOtherProperties:nil
+                                   queue:nil
+                   withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error)
+     {
+         if ([result isKindOfClass:[WeiboUser class]]) {
+             WeiboUser *user = (WeiboUser *)result;
+             
+             NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:7];
+             
+             if (user.userID) {
+                 userProfile[@"userId"] = user.userID;
+             }
+             
+             if (user.name) {
+                 userProfile[@"name"] = user.name;
+             }
+             
+             if (user.location) {
+                 userProfile[@"location"] = user.location;
+             }
+             
+             if (user.gender) {
+                 userProfile[@"gender"] = user.gender;
+             }
+             
+             if (user.profileImageUrl) {
+                 userProfile[@"pictureURL"] = user.profileImageUrl;
+             }
+             
+             [[MLUser currentUser] setObject:userProfile forKey:@"weiboProfile"];
+             [[MLUser currentUser] saveInBackgroundWithBlock:nil];
+             
+             [self updateProfile];
+         } else {
+             NSLog(@"failed to get user profile, error: %@,\nresult: %@", error, result);
+         }
+     }];
+}
+
+#pragma mark -
+#pragma mark WeChat
+
+- (void)refreshWechatProfile {
+    MLWeChatAccessToken *token = [MLWeChatAccessToken currentAccessToken];
+    if (!token) {
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *urlStr = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@", token.accessToken, token.userID];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+        NSHTTPURLResponse *response = nil;
+        NSError *error = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        id responseObject = nil;
+        if (data) {
+            responseObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (responseObject[@"errcode"] == nil) {;
+                    
+                    NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:7];
+                    
+                    if (responseObject[@"openid"]) {
+                        userProfile[@"userId"] = responseObject[@"openid"];
+                    }
+                    
+                    if (responseObject[@"nickname"]) {
+                        userProfile[@"name"] = responseObject[@"nickname"];
+                    }
+                    
+                    if (responseObject[@"country"]) {
+                        userProfile[@"location"] = responseObject[@"country"];
+                    }
+                    
+                    if (responseObject[@"sex"]) {
+                        userProfile[@"gender"] = responseObject[@"sex"];
+                    }
+                    
+                    if (responseObject[@"headimgurl"]) {
+                        userProfile[@"pictureURL"] = responseObject[@"headimgurl"];
+                    }
+                    
+                    [[MLUser currentUser] setObject:userProfile forKey:@"wechatProfile"];
+                    [[MLUser currentUser] saveInBackgroundWithBlock:nil];
+                    
+                    [self updateProfile];
+                    return ;
+                } else {
+                    error = [NSError errorWithDomain:@"GetWechatProfileError" code:[responseObject[@"errcode"] integerValue] userInfo:responseObject];
+                }
+            } else {
+                
+            }
+        }
+        NSLog(@"Something goes wrong, error: %@", error);
+    });
 }
 
 @end

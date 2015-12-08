@@ -14,6 +14,12 @@
 #define MaxLeap_ClientKey @"OVNLNU90SEk5aWhnZlNvYmVoa28zUQ"
 #define MaxLeap_site MLSiteCN
 
+#define Weibo_AppKey @"2328234403"
+#define Weibo_RedirectURI @"https://api.weibo.com/oauth2/default.html"
+
+#define Weixin_AppId @"wx41b6f4bde79513c8"
+#define Weixin_AppSecret @"d4624c36b6795d1d99dcf0547af5443d"
+
 @implementation AppDelegate
 
 #pragma mark - UIApplicationDelegate
@@ -28,14 +34,16 @@
     [MaxLeap setApplicationId:MaxLeap_AppId clientKey:MaxLeap_ClientKey site:MaxLeap_site];
     self.region = MaxLeap_site;
     
-    // ****************************************************************************
-    // Make sure your Facebook application id is configured in Info.plist.
-    // ****************************************************************************
-    [MLFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
-    
-    [MLWeiboUtils initializeWeiboWithAppKey:@"2328234403" redirectURI:@"https://api.weibo.com/oauth2/default.html"];
-    
-    [MLWeChatUtils initializeWeChatWithAppId:@"wx41b6f4bde79513c8" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" wxDelegate:[WeChatSDKDelegate sharedInstance]];
+    if (self.region == MLSiteUS) {
+        // ****************************************************************************
+        // Make sure your Facebook application id is configured in Info.plist.
+        // ****************************************************************************
+        [MLFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    } else if (MaxLeap_site == MLSiteCN) {
+        [MLWeiboUtils initializeWeiboWithAppKey:Weibo_AppKey redirectURI:Weibo_RedirectURI];
+        
+        [MLWeChatUtils initializeWeChatWithAppId:Weixin_AppId appSecret:Weixin_AppSecret wxDelegate:[WeChatSDKDelegate sharedInstance]];
+    }
     
     // Override point for customization after application launch.
     
@@ -66,8 +74,9 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
-    
-    [FBSDKAppEvents activateApp];
+    if (self.region == MLSiteUS) {
+        [FBSDKAppEvents activateApp];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

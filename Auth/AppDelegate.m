@@ -10,13 +10,9 @@
 #import <MLWeiboUtils/MLWeiboUtils.h>
 #import <MLWeChatUtils/MLWeChatUtils.h>
 
-//// us
-//#define MaxLeap_AppId @"5590e80460b20e0cc25c7536"
-//#define MaxLeap_ClientKey @"Z2ZVdnVXY2haSTM4X19ORWRTME50dw"
-
-// cn
-#define MaxLeap_AppId @"5666803e04495f000166824c"
-#define MaxLeap_ClientKey @"MmhWZjRicTBjclpQci13QXhfOGJMZw"
+// cn pro
+#define MaxLeap_AppId @"56567d14a5ff7f00019ee642"
+#define MaxLeap_ClientKey @"OVNLNU90SEk5aWhnZlNvYmVoa28zUQ"
 
 @implementation AppDelegate
 

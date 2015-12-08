@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/MLWeChatAccessToken.h</key>
 		<data>
-		hQwMJEyaIAoQ6ds8Gpc2tyQRQtg=
+		SsgJkPlyTjLrqvlidaYrwC//sH8=
 		</data>
 		<key>Headers/MLWeChatUtils.h</key>
 		<data>
-		2C6Goh3XKzMwyij6H2VRNyhU3z8=
+		I0bibCfPhuwHtoTZtIhJSzPkZpc=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -20,28 +20,20 @@
 		<data>
 		/vSUSDGk6gT3FRyq+Qg0PtU6820=
 		</data>
-		<key>read_me.txt</key>
-		<data>
-		E17jI2V6eKrBPiiKaRgxPi5pnj4=
-		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
 		<key>Headers/MLWeChatAccessToken.h</key>
 		<data>
-		hQwMJEyaIAoQ6ds8Gpc2tyQRQtg=
+		SsgJkPlyTjLrqvlidaYrwC//sH8=
 		</data>
 		<key>Headers/MLWeChatUtils.h</key>
 		<data>
-		2C6Goh3XKzMwyij6H2VRNyhU3z8=
+		I0bibCfPhuwHtoTZtIhJSzPkZpc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		/vSUSDGk6gT3FRyq+Qg0PtU6820=
-		</data>
-		<key>read_me.txt</key>
-		<data>
-		E17jI2V6eKrBPiiKaRgxPi5pnj4=
 		</data>
 	</dict>
 	<key>rules</key>

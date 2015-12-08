@@ -215,7 +215,7 @@
         return;
     }
     [WBHttpRequest requestForUserProfile:token.userID
-                         withAccessToken:token.accessToken
+                         withAccessToken:token.tokenString
                       andOtherProperties:nil
                                    queue:nil
                    withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error)
@@ -264,7 +264,7 @@
         return;
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *urlStr = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@", token.accessToken, token.userID];
+        NSString *urlStr = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@", token.tokenString, token.userID];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
         NSHTTPURLResponse *response = nil;
         NSError *error = nil;

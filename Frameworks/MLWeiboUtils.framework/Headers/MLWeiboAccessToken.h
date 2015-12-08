@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import <MaxLeap/MLConstants.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  @class MLWeiboAccessToken
  @abstract Represents an immutable access token for using Weibo services.
@@ -20,34 +22,35 @@
 /*!
  @abstract Returns the weibo access token.
  */
-@property (readonly, nonatomic, strong) NSString *accessToken;
+@property (readonly, nonatomic, strong) NSString *tokenString;
 
 /*!
  @abstract Returns the expiration date.
  */
-@property (readonly, nonatomic, strong) NSDate *expirationDate;
+@property (readonly, nonatomic, strong, nullable) NSDate *expirationDate;
 
 /*!
  @abstract Returns the refresh token.
  */
-@property (readonly, nonatomic, strong) NSString *refreshToken;
+@property (readonly, nonatomic, strong, nullable) NSString *refreshToken;
 
 /*!
  @abstract Initializes a new instance.
- @param accessToken the opaque token string.
- @param userId the user Id.
- @param expirationDate the optional expiration date (defaults to distantFuture).
+ @param tokenString     The opaque token string.
+ @param userID          The user Id.
+ @param expirationDate  The optional expiration date (defaults to distantFuture).
+ @param refreshToken    The refresh token
  */
-- (instancetype)initWithAccessToken:(NSString *)accessToken
+- (instancetype)initWithTokenString:(NSString *)tokenString
                              userID:(NSString *)userID
-                     expirationDate:(NSDate *)expirationDate
-                       refreshToken:(NSString *)refreshToken
+                     expirationDate:(nullable NSDate *)expirationDate
+                       refreshToken:(nullable NSString *)refreshToken
 NS_DESIGNATED_INITIALIZER;
 
 /*!
- @abstract Returns the "global" weibo access token that represents the currently logged in user.
+ @abstract Returns the "global" weibo access token that represents the currently logged in weibo user.
  */
-+ (MLWeiboAccessToken *)currentAccessToken;
++ (nullable MLWeiboAccessToken *)currentAccessToken;
 
 /*!
  @abstract Call +[WBHttpRequest requestForRenewAccessTokenWithRefreshToken:queue:withCompletionHandler:] to renew current weibo access token and save the new token to the MaxLeap servers.
@@ -55,7 +58,7 @@ NS_DESIGNATED_INITIALIZER;
  @discussion On a successful refresh, the currentAccessToken will be updated so you typically only need to
  observe the `MLWeiboAccessTokenDidChangeNotification` notification.
  */
-+ (void)refreshCurrentAccessToken:(MLBooleanResultBlock)completionHandler;
++ (void)refreshCurrentAccessToken:(nullable MLBooleanResultBlock)completionHandler;
 
 @end
 
@@ -91,3 +94,4 @@ FOUNDATION_EXPORT NSString * const kMLWeiboOldAccessTokenKey;
 FOUNDATION_EXPORT NSString * const kMLWeiboNewAccessTokenKey;
 
 
+NS_ASSUME_NONNULL_END

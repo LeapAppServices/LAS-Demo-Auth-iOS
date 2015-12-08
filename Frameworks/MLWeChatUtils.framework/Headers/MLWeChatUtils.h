@@ -11,6 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Provides utility functions for working with Wechat in a MaxLeap application.<br>
+ 
+ This class is currently for iOS only.
+ */
 @interface MLWeChatUtils : NSObject
 
 ///--------------------------------------
@@ -24,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  @warning The apis below are only available when `+[WXApi regiterApp:]` successfully.
  
  @param appId       Your wechat app key.
- @param appSecrect  Your wechat app secrect.
+ @param appSecret   Your wechat app secret.
  @param delegate    The WXApi delegate to handle wechat request and response.
  
  @return Return the value returned by `+[WXApi registerApp:]`
@@ -38,35 +43,29 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  @abstract *Asynchronously* logs in a user using WeChat with scopes.
  
- @discussion This method delegates to the WeChat SDK to authenticate the user,
- and then automatically logs in (or creates, in the case where it is a new user) a <MLUser>.
- The `onResp:` method defined in `WXApiDelegate` protocol should be implemented and `[MLWeChatUtils handleAuthorizeResponse:]` should be called when the delegate recieve `SendAuthResp`.
+ @discussion This method delegates to the WeChat SDK to authenticate the user, and then automatically logs in (or creates, in the case where it is a new user) a `MLUser`.
+ The `onResp:` method defined in `WXApiDelegate` protocol should be implemented and `[MLWeChatUtils handleAuthorizeResponse:]` should be called when the delegate receive `SendAuthResp`.
  
- @param scope       The API scopes requested by the app in a list of space-delimited, case sensitive strings.
- @param block       The block to execute when the log in completes.
- It should have the following signature: `^(MLUser *user, NSError *error)`.
+ @param scope The API scopes requested by the app in a list of comma-delimited, case sensitive strings.
+ @param block The block to execute when the log in completes. It should have the following signature: `^(MLUser *user, NSError *error)`.
  */
 + (void)loginInBackgroundWithScope:(nullable NSString *)scope block:(nullable MLUserResultBlock)block;
 
 /*!
  @abstract Handle the wechat authenticate response to complete the login process.
  
- @discussion This method result in a <MLUser> logging in or creating. And then the block in method `loginInBackgroundWithScope:block:` or `linkUserInBackground:withScope:block:` will be excuted on main thread.
- You should call this method when recieve the `SendAuthResp` response.
+ @discussion This method result in a `MLUser` logging in or creating. And then the block in method `loginInBackgroundWithScope:block:` or `linkUserInBackground:withScope:block:` will be excuted on main thread.
+ You should call this method when receive the `SendAuthResp` response.
  
- @param authorizeResponse The `SendAuthResp` recieved in WXApiDelegate method 'onResp:'.
+ @param authorizeResponse The `SendAuthResp` received in WXApiDelegate method 'onResp:'.
  */
 + (void)handleAuthorizeResponse:(SendAuthResp *)authorizeResponse;
 
-/*!
- @abstract *Asynchronously* logs in a user using Facebook with read permissions.
- 
- @discussion This method delegates to the Facebook SDK to authenticate the user,
- and then automatically logs in (or creates, in the case where it is a new user) a <MLUser>.
- 
- @param token An instance of `MLWeChatAccessToken` to use.
- @param block The block to execute when the log in completes.
- It should have the following signature: `^(MLUser *user, NSError *error)`.
+/**
+ *  Logs in a user using wechat. Allows you to handle user login to wechat, then provide authentication data to log in (or create, in the case where it is a new user) the `MLUser`.
+ *
+ *  @param token The wechat authentication data.
+ *  @param block The block to execute. The block should have the following argument signature: (MLUser *user, NSError *error)
  */
 + (void)loginInBackgroundWithAccessToken:(MLWeChatAccessToken *)token block:(nullable MLUserResultBlock)block;
 
@@ -74,44 +73,36 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Linking Users
 ///--------------------------------------
 
-/*!
- @abstract *Asynchronously* links Facebook with read permissions to an existing <MLUser>.
- 
- @discussion This method delegates to the Facebook SDK to authenticate
- the user, and then automatically links the account to the <MLUser>.
- It will also save any unsaved changes that were made to the `user`.
- 
- @param user  User to link to Wechat.
- @param scope The API scopes requested by the app in a list of space-delimited, case sensitive strings.
- @param block The block to execute when the linking completes.
- It should have the following signature: `^(BOOL succeeded, NSError *error)`.
+/**
+ *  @abstract *Asynchronously* links wechat with scopes to an existing `MLUser`.
+ *
+ *  @discussion This method delegates to the WeChat SDK to authenticate, and then automatically links the account to the `MLUser`.
+ *  It will also save any unsaved changes that were made to the `user`.
+ *
+ *  @param user  User to link with wechat.
+ *  @param scope The API scopes requested by the app in a list of comma-delimited, case sensitive strings.
+ *  @param block The block to execute when the linking completes. It should have the following signature: `^(BOOL succeeded, NSError *error)`.
  */
-+ (void)linkUserInBackground:(MLUser *)user withScope:(nullable NSString *)scope block:(nullable MLBooleanResultBlock)block;
++ (void)linkUserInBackground:(MLUser *)user withScope:(NSString *)scope block:(nullable MLBooleanResultBlock)block;
 
 ///--------------------------------------
 /// @name Linking Users
 ///--------------------------------------
 
-/*!
- @abstract *Asynchronously* links Facebook with read permissions to an existing <MLUser>.
- 
- @discussion This method delegates to the Facebook SDK to authenticate
- the user, and then automatically links the account to the <MLUser>.
- It will also save any unsaved changes that were made to the `user`.
- 
- @param user  User to link to Wechat.
- @param token An instance of `MLWeChatAccessToken` to use.
- @param block The block to execute when the linking completes.
- It should have the following signature: `^(BOOL succeeded, NSError *error)`.
+/**
+ *  @abstract *Asynchronously* links Wechat with authentication data to an existing `MLUser`.
+ *
+ *  @param user  User to link with wechat
+ *  @param token The wechat authentication data
+ *  @param block The block to execute when the linking completes. It should have the following signature: `^(BOOL succeeded, NSError *error)`.
  */
 + (void)linkUserInBackground:(MLUser *)user withAccessToken:(MLWeChatAccessToken *)token block:(nullable MLBooleanResultBlock)block;
 
 /*!
- @abstract Unlinks the <MLUser> from a Facebook account *asynchronously*.
+ @abstract Unlinks the `MLUser` from a Wechat account *asynchronously*.
  
  @param user  User to unlink from Wechat.
- @param block The block to execute.
- It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
+ @param block The block to execute. It should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
 + (void)unlinkUserInBackground:(MLUser *)user block:(nullable MLBooleanResultBlock)block;
 

@@ -14,35 +14,40 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MLWeChatAccessToken : NSObject
 
 /*!
- @abstract Returns the user ID.
+ @abstract Returns the wechat user ID.
  */
 @property (readonly, nonatomic, copy) NSString *userID;
 
 /*!
  @abstract Returns the wechat access token.
  */
-@property (readonly, nonatomic, copy) NSString *accessToken;
+@property (readonly, nonatomic, copy) NSString *tokenString;
 
 /*!
  @abstract Returns the expiration date.
  */
-@property (readonly, nonatomic, copy) NSDate *expirationDate;
+@property (readonly, nonatomic, copy, nullable) NSDate *expirationDate;
 
 /*!
  @abstract Returns the refresh token.
  */
-@property (readonly, nonatomic, copy) NSString *refreshToken;
+@property (readonly, nonatomic, copy, nullable) NSString *refreshToken;
 
 /*!
  @abstract Returns the scope.
  */
-@property (readonly, nonatomic, copy) NSString *scope;
+@property (readonly, nonatomic, copy, nullable) NSString *scope;
 
-/*!
- @abstract Initializes a new instance.
- @param accessToken     The opaque token string.
- @param userId          The user Id.
- @param expirationDate  The optional expiration date (defaults to distantFuture).
+/**
+ *  @abstract Initializes a new instance.
+ *
+ *  @param tokenString    The opaque token string.
+ *  @param userID         The wechat user id
+ *  @param expirationDate The optional expiration date (defaults to distantFuture).
+ *  @param refreshToken   The refresh token
+ *  @param scope          The API scopes requested by the app in a list of comma-delimited, case sensitive strings.
+ *
+ *  @return An instance of `MLWeChatAccessToken`.
  */
 - (instancetype)initWithTokenString:(NSString *)tokenString
                              userID:(NSString *)userID
@@ -54,7 +59,7 @@ NS_DESIGNATED_INITIALIZER;
 /*!
  @abstract Returns the "global" wechat access token that represents the currently logged in user.
  */
-+ (MLWeChatAccessToken *)currentAccessToken;
++ (nullable MLWeChatAccessToken *)currentAccessToken;
 
 /*!
  @abstract Renew current wechat access token using refresh.
@@ -63,7 +68,7 @@ NS_DESIGNATED_INITIALIZER;
  
  @param completionHandler An optional callback handler that can surface any errors related to access token refreshing.
  */
-+ (void)refreshCurrentAccessToken:(MLBooleanResultBlock)completionHandler;
++ (void)refreshCurrentAccessToken:(nullable MLBooleanResultBlock)completionHandler;
 
 @end
 

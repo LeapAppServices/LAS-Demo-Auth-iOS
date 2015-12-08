@@ -10,6 +10,14 @@
 #import <MLWeiboUtils/MLWeiboUtils.h>
 #import <MLWeChatUtils/MLWeChatUtils.h>
 
+//// us
+//#define MaxLeap_AppId @"5590e80460b20e0cc25c7536"
+//#define MaxLeap_ClientKey @"Z2ZVdnVXY2haSTM4X19ORWRTME50dw"
+
+// cn
+#define MaxLeap_AppId @"5666803e04495f000166824c"
+#define MaxLeap_ClientKey @"MmhWZjRicTBjclpQci13QXhfOGJMZw"
+
 @implementation AppDelegate
 
 #pragma mark - UIApplicationDelegate
@@ -21,8 +29,7 @@
     // ****************************************************************************
 #warning Please fill in with your MaxLeap credentials
     // [MaxLeap setApplicationId:@"APPLICATION_ID_HERE" clientKey:@"CLIENT_KEY_HERE" site:SITE];
-//    [MaxLeap setApplicationId:@"55b202f760b2173daeff03b1" clientKey:@"Yy1VSEJlUHNnQzFRcHBudTAzWGhSdw" site:MLSiteUS];
-    [MaxLeap setApplicationId:@"5590e80460b20e0cc25c7536" clientKey:@"Z2ZVdnVXY2haSTM4X19ORWRTME50dw" site:MLSiteUS];
+    [MaxLeap setApplicationId:MaxLeap_AppId clientKey:MaxLeap_ClientKey site:MLSiteCN];
     
     // ****************************************************************************
     // Make sure your Facebook application id is configured in Info.plist.

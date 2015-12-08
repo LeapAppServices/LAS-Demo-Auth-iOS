@@ -98,7 +98,10 @@
                     <navigationItem key="navigationItem" title="Auth" id="xOH-eM-6Ca"/>
                     <connections>
                         <outlet property="activityIndicator" destination="lgd-G0-ee6" id="Lfq-5Q-OJI"/>
-                        <outlet property="facebookButton" destination="Z0t-Ws-DMK" id="ISk-gH-Z7g"/>
+                        <outlet property="facebookButton" destination="Z0t-Ws-DMK" id="8s5-Gq-Pht"/>
+                        <outlet property="facebookPromtLabel" destination="tU6-nw-614" id="SbG-yb-GbS"/>
+                        <outlet property="wechatButton" destination="Lmc-Pq-PPq" id="D2x-74-mtD"/>
+                        <outlet property="weiboButton" destination="EJD-ya-88W" id="MY2-4c-XBS"/>
                         <segue destination="nYs-8a-BHy" kind="show" identifier="showUserProfile" id="7st-y2-LaO"/>
                     </connections>
                 </viewController>

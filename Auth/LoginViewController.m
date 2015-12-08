@@ -6,6 +6,7 @@
 #import <MLFacebookUtilsV4/MLFacebookUtils.h>
 #import <MLWeiboUtils/MLWeiboUtils.h>
 #import <MLWeChatUtils/MLWeChatUtils.h>
+#import "AppDelegate.h"
 
 @implementation LoginViewController
 
@@ -19,6 +20,16 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    MLSite region = [(AppDelegate *)[UIApplication sharedApplication].delegate region];
+    if (region == MLSiteUS) {
+        self.weiboButton.hidden = YES;
+        self.wechatButton.hidden = YES;
+    } else if (region == MLSiteCN) {
+        self.facebookPromtLabel.hidden = YES;
+        self.facebookButton.hidden = YES;
+    }
+    
     
     // Check if user is cached and linked to Facebook, if so, bypass login
     MLUser *currentUser = [MLUser currentUser];

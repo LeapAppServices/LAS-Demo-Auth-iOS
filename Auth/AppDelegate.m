@@ -5,7 +5,6 @@
 #import "WeiboSDKDelegate.h"
 #import "WeChatSDKDelegate.h"
 
-#import <MaxLeap/MaxLeap.h>
 #import <MLFacebookUtilsV4/MLFacebookUtils.h>
 #import <MLWeiboUtils/MLWeiboUtils.h>
 #import <MLWeChatUtils/MLWeChatUtils.h>
@@ -13,6 +12,7 @@
 // cn pro
 #define MaxLeap_AppId @"56567d14a5ff7f00019ee642"
 #define MaxLeap_ClientKey @"OVNLNU90SEk5aWhnZlNvYmVoa28zUQ"
+#define MaxLeap_site MLSiteCN
 
 @implementation AppDelegate
 
@@ -25,7 +25,8 @@
     // ****************************************************************************
 #warning Please fill in with your MaxLeap credentials
     // [MaxLeap setApplicationId:@"APPLICATION_ID_HERE" clientKey:@"CLIENT_KEY_HERE" site:SITE];
-    [MaxLeap setApplicationId:MaxLeap_AppId clientKey:MaxLeap_ClientKey site:MLSiteCN];
+    [MaxLeap setApplicationId:MaxLeap_AppId clientKey:MaxLeap_ClientKey site:MaxLeap_site];
+    self.region = MaxLeap_site;
     
     // ****************************************************************************
     // Make sure your Facebook application id is configured in Info.plist.

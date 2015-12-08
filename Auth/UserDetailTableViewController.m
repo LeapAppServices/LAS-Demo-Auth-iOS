@@ -5,6 +5,7 @@
 
 #import "UserDetailTableViewController.h"
 #import "TrdPartyProfileViewController.h"
+#import "AppDelegate.h"
 
 @interface UserDetailTableViewController ()
 @property (nonatomic, strong) NSArray *platforms;
@@ -15,7 +16,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.platforms = @[@"Facebook Profile", @"Weibo Profile", @"WeChat Profile"];
+    MLSite region = [(AppDelegate *)[UIApplication sharedApplication].delegate region];
+    if (region == MLSiteUS) {
+        self.platforms = @[@"Facebook Profile"];
+    } else if (region == MLSiteCN) {
+        self.platforms = @[@"Weibo Profile", @"WeChat Profile"];
+    }
 }
 
 - (void)viewDidLoad {

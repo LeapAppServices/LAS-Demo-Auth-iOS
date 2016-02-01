@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Facebook Profile";
+    self.title = self.platform;
     self.tableView.backgroundColor = [UIColor colorWithRed:230.0f/255.0f green:230.0f/255.0f blue:230.0f/255.0f alpha:1.0f];
     
     // Load table header view from nib
@@ -136,20 +136,10 @@
         self.headerNameLabel.text = profile[@"name"];
     }
     
-    // Download the user's facebook profile picture
-    self.imageData = [[NSMutableData alloc] init]; // the data will be loaded in here
-    
     if (profile[@"pictureURL"]) {
         NSURL *pictureURL = [NSURL URLWithString:profile[@"pictureURL"]];
-        
-        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
-                                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                              timeoutInterval:2.0f];
-        // Run network request asynchronously
-        NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
-        if (!urlConnection) {
-            NSLog(@"Failed to download picture");
-        }
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:pictureURL]];
+        self.headerImageView.image = image;
     }
 }
 
@@ -263,7 +253,7 @@
     if (!token) {
         return;
     }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *urlStr = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@", token.tokenString, token.userID];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
         NSHTTPURLResponse *response = nil;
@@ -290,7 +280,7 @@
                     }
                     
                     if (responseObject[@"sex"]) {
-                        userProfile[@"gender"] = responseObject[@"sex"];
+                        userProfile[@"gender"] = [responseObject[@"sex"] stringValue];
                     }
                     
                     if (responseObject[@"headimgurl"]) {
@@ -300,7 +290,9 @@
                     [[MLUser currentUser] setObject:userProfile forKey:@"wechatProfile"];
                     [[MLUser currentUser] saveInBackgroundWithBlock:nil];
                     
-                    [self updateProfile];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self updateProfile];
+                    });
                     return ;
                 } else {
                     error = [NSError errorWithDomain:@"GetWechatProfileError" code:[responseObject[@"errcode"] integerValue] userInfo:responseObject];
@@ -310,7 +302,7 @@
             }
         }
         NSLog(@"Something goes wrong, error: %@", error);
-    });
+//    });
 }
 
 @end

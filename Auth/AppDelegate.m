@@ -10,15 +10,16 @@
 #import <MLWeChatUtils/MLWeChatUtils.h>
 
 // cn pro
-#define MaxLeap_AppId @"56567d14a5ff7f00019ee642"
-#define MaxLeap_ClientKey @"OVNLNU90SEk5aWhnZlNvYmVoa28zUQ"
+#warning Please replace the folowing keys
+#define MaxLeap_AppId @"your_maxleap_applicationId"
+#define MaxLeap_ClientKey @"your_maxleap_clientkey"
 #define MaxLeap_site MLSiteCN
 
-#define Weibo_AppKey @"2328234403"
+#define Weibo_AppKey @"your_weibo_appkey"
 #define Weibo_RedirectURI @"https://api.weibo.com/oauth2/default.html"
 
-#define Weixin_AppId @"wx41b6f4bde79513c8"
-#define Weixin_AppSecret @"d4624c36b6795d1d99dcf0547af5443d"
+#define Weixin_AppId @"your_weixin_appId"
+#define Weixin_AppSecret @"your_weixin_appSecret"
 
 @implementation AppDelegate
 

@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param block       The block to execute when the log in completes.
  It should have the following signature: `^(MLUser *user, NSError *error)`.
  */
-+ (void)logInInBackgroundWithReadPermissions:(NSArray *)permissions
++ (void)logInInBackgroundWithReadPermissions:(NSArray ML_GENERIC(NSString*) *)permissions
                                        block:(nullable MLUserResultBlock)block;
 
 /*!
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param block       The block to execute when the log in completes.
  It should have the following signature: `^(MLUser *user, NSError *error)`.
  */
-+ (void)logInInBackgroundWithPublishPermissions:(NSArray *)permissions
++ (void)logInInBackgroundWithPublishPermissions:(NSArray ML_GENERIC(NSString*) *)permissions
                                           block:(nullable MLUserResultBlock)block;
 
 /*!
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
  It should have the following signature: `^(BOOL succeeded, NSError *error)`.
  */
 + (void)linkUserInBackground:(MLUser *)user
-         withReadPermissions:(NSArray *)permissions
+         withReadPermissions:(NSArray ML_GENERIC(NSString *) *)permissions
                        block:(nullable MLBooleanResultBlock)block;
 
 /*!
@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
  It should have the following signature: `^(BOOL succeeded, NSError *error)`.
  */
 + (void)linkUserInBackground:(MLUser *)user
-      withPublishPermissions:(NSArray *)permissions
+      withPublishPermissions:(NSArray ML_GENERIC(NSString*) *)permissions
                        block:(nullable MLBooleanResultBlock)block;
 
 /*!

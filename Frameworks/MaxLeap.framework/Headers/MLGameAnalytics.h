@@ -8,6 +8,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ *  Track game mission events.
+ */
 @interface MLGAMission : NSObject
 
 /**
@@ -19,14 +22,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)onBegin:(NSString *)missionId type:(nullable NSString *)type;
 
 /**
- * Pause the mission tracking.
+ * Suspend the mission tracking timer.
  *
  * @param missionId The mission id
  */
 + (void)onPause:(NSString *)missionId;
 
 /**
- * Pause all the mission trackings.
+ * Suspend all the mission tracking timers.
  */
 + (void)pauseAll;
 
@@ -60,7 +63,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-
+/**
+ *  Track the game item events.
+ */
 @interface MLGAItem : NSObject
 
 /**
@@ -95,7 +100,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-
+/**
+ *  Track game virture currency events.
+ */
 @interface MLGAVirtureCurrency : NSObject
 
 /**
@@ -148,5 +155,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)onReward:(double)virtualCurrencyAmount reason:(NSString *)reason;
 
 @end
+
+FOUNDATION_EXPORT NSString * const MLPaySourceAli;
+FOUNDATION_EXPORT NSString * const MLPaySourceAliApp;
+FOUNDATION_EXPORT NSString * const MLPaySourceWeiXin;
+FOUNDATION_EXPORT NSString * const MLPaySourceWeiXinApp;
+FOUNDATION_EXPORT NSString * const MLPaySourcePaypal;
+FOUNDATION_EXPORT NSString * const MLPaySourceAppStore;
+FOUNDATION_EXPORT NSString * const MLPaySourceAmazon;
+FOUNDATION_EXPORT NSString * const MLPaySourceUnion;
+FOUNDATION_EXPORT NSString * const MLPaySourceUnionApp;
 
 NS_ASSUME_NONNULL_END

@@ -44,12 +44,12 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  The name of the file.
  */
-@property (readonly, nullable) NSString *name;
+@property (readonly, copy, nullable) NSString *name;
 
 /*!
  The url of the file.
  */
-@property (readonly, nullable) NSString *url;
+@property (readonly, copy, nullable) NSString *url;
 
 @property (readonly) long long size;
 
@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param error   Pointer to an NSError that will be set if necessary.
  @result The data of file. Returns nil if there was an error in fetching.
  */
-- (nullable NSData *)getData:(NSError  * _Nullable * _Nullable)error;
+- (nullable NSData *)getData:(NSError  * __nullable * __nullable)error;
 
 /*!
  Asynchronously gets the data from cache if available or fetches its contents

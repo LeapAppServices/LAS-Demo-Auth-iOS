@@ -10,7 +10,7 @@
 ///--------------------------------------
 
 // MaxLeap SDK Version
-#define MaxLeap_VERSION @"2.0.3"
+#define MaxLeap_VERSION @"2.0.8"
 
 ///--------------------------------------
 /// @name MaxLeap Sites
@@ -173,6 +173,9 @@ typedef NS_ENUM(NSInteger, MLErrorCode) {
     /** @abstract 211: User not found. */
     kMLErrorUserNotFound = 211,
     
+    /** @abstract 221: Invalid sms code. */
+    kMLErrorInvalidSmsCode = 221,
+    
     /*! @abstract 250: User cannot be linked to an account because that account’s ID is not found. */
     kMLErrorLinkedIdMissing = 250,
     
@@ -203,8 +206,20 @@ typedef NS_ENUM(NSInteger, MLErrorCode) {
     /** @abstract 602: Unexpected error. No infomation available. */
     kMLErrorUnexpected = 602,
     
-    /** @abstract 90000: Unkown error */
-    kMLErrorUnkown = 90000
+    /** @abstract 90000: No Permission */
+    kMLErrorNoPermission = 90000,
+    
+    /** @abstract 90000: Session token invalid */
+    kMLErrorSessionTokenInvalid = 90100,
+    
+    /** @abstract 90000: Session token expired */
+    kMLErrorSessionTokenExpired = 90101,
+    
+    /** @abstract 90000: AppId and key does not match */
+    kMLErrorAppIdAndKeyNotMatch = 90102,
+    
+    /** @abstract 90000: AppId and session token does not match */
+    kMLErrorAppIdAndSessionTokenNotMatch = 90103
 };
 
 ///--------------------------------------
@@ -245,4 +260,14 @@ typedef void (^MLUsageResultBlock)(NSInteger fileCount, long usedCapacity, NSErr
 #  else
 #    define ML_EXTENSION_UNAVAILABLE(_msg)
 #  endif
+#endif
+
+///--------------------------------------
+/// @name Obj-C Generics Macros
+///--------------------------------------
+
+#if __has_feature(objc_generics) || __has_extension(objc_generics)
+#  define ML_GENERIC(...) <__VA_ARGS__>
+#else
+#  define ML_GENERIC(...)
 #endif

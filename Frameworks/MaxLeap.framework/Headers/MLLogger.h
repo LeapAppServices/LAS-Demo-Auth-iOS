@@ -42,6 +42,9 @@ typedef NS_ENUM(int, MLLogLevel) {
     MLLogLevelDebug = 4
 };
 
+/**
+ *  The logger interface.
+ */
 @protocol MLLogger <NSObject>
 
 @optional

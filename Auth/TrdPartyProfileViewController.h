@@ -3,7 +3,7 @@
 
 #import <MaxLeap/MaxLeap.h>
 
-@interface TrdPartyProfileViewController : UITableViewController <NSURLConnectionDelegate>
+@interface TrdPartyProfileViewController : UITableViewController
 
 @property (nonatomic, copy) NSString *platform;
 

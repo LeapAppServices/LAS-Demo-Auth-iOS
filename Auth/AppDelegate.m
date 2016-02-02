@@ -31,8 +31,7 @@
     // Uncommit fill in with your MaxLeap credentials:
     // ****************************************************************************
 #warning Please fill in with your MaxLeap credentials
-    // [MaxLeap setApplicationId:@"APPLICATION_ID_HERE" clientKey:@"CLIENT_KEY_HERE" site:SITE];
-    [MaxLeap setApplicationId:MaxLeap_AppId clientKey:MaxLeap_ClientKey site:MaxLeap_site];
+     [MaxLeap setApplicationId:MaxLeap_AppId clientKey:MaxLeap_ClientKey site:MaxLeap_site];
     self.region = MaxLeap_site;
     
     if (self.region == MLSiteUS) {
@@ -40,12 +39,12 @@
         // Make sure your Facebook application id is configured in Info.plist.
         // ****************************************************************************
         [MLFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
-    } else if (MaxLeap_site == MLSiteCN) {
+    } else if (self.region == MLSiteCN) {
         [MLWeiboUtils initializeWeiboWithAppKey:Weibo_AppKey redirectURI:Weibo_RedirectURI];
         
         [MLWeChatUtils initializeWeChatWithAppId:Weixin_AppId appSecret:Weixin_AppSecret wxDelegate:[WeChatSDKDelegate sharedInstance]];
     }
-    
+
     // Override point for customization after application launch.
     
     return YES;
@@ -54,21 +53,29 @@
 // ****************************************************************************
 // App switching methods to support Facebook Single Sign-On.
 // ****************************************************************************
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 90000
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    BOOL facebook = [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-    BOOL weibo = [WeiboSDK handleOpenURL:url delegate:[WeiboSDKDelegate sharedInstance]];
-    BOOL wechat = [WXApi handleOpenURL:url delegate:[WeChatSDKDelegate sharedInstance]];
-    return facebook || weibo || wechat;
+    if (self.region == MLSiteUS) {
+        return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    } else {
+        BOOL weibo = [WeiboSDK handleOpenURL:url delegate:[WeiboSDKDelegate sharedInstance]];
+        BOOL wechat = [WXApi handleOpenURL:url delegate:[WeChatSDKDelegate sharedInstance]];
+        return weibo || wechat;
+    }
 }
+#endif
 
 // iOS 9
 - (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
-    NSString *sourceApplication = options[UIApplicationLaunchOptionsSourceApplicationKey];
-    id annotation = options[UIApplicationLaunchOptionsAnnotationKey];
-    BOOL facebook = [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-    BOOL weibo = [WeiboSDK handleOpenURL:url delegate:[WeiboSDKDelegate sharedInstance]];
-    BOOL wechat = [WXApi handleOpenURL:url delegate:[WeChatSDKDelegate sharedInstance]];
-    return facebook || weibo || wechat;
+    if (self.region == MLSiteUS) {
+        NSString *sourceApplication = options[UIApplicationLaunchOptionsSourceApplicationKey];
+        id annotation = options[UIApplicationLaunchOptionsAnnotationKey];
+        return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    } else {
+        BOOL weibo = [WeiboSDK handleOpenURL:url delegate:[WeiboSDKDelegate sharedInstance]];
+        BOOL wechat = [WXApi handleOpenURL:url delegate:[WeChatSDKDelegate sharedInstance]];
+        return weibo || wechat;
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

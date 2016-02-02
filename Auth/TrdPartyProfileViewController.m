@@ -253,7 +253,7 @@
     if (!token) {
         return;
     }
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *urlStr = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@", token.tokenString, token.userID];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
         NSHTTPURLResponse *response = nil;
@@ -302,7 +302,7 @@
             }
         }
         NSLog(@"Something goes wrong, error: %@", error);
-//    });
+    });
 }
 
 @end

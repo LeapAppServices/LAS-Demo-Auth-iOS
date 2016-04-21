@@ -5,9 +5,13 @@
 
 @interface LoginViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *facebookPromtLabel;
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 
-- (IBAction)loginButtonTouchHandler:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *weiboButton;
+@property (weak, nonatomic) IBOutlet UIButton *wechatButton;
+
+
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end

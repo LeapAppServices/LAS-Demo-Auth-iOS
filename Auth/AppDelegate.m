@@ -10,7 +10,7 @@
 #import <MLWeChatUtils/MLWeChatUtils.h>
 
 // cn pro
-#warning Please replace the folowing keys
+#error Please replace the folowing keys
 #define MaxLeap_AppId @"your_maxleap_applicationId"
 #define MaxLeap_ClientKey @"your_maxleap_clientkey"
 #define MaxLeap_site MLSiteCN
@@ -30,7 +30,6 @@
     // ****************************************************************************
     // Uncommit fill in with your MaxLeap credentials:
     // ****************************************************************************
-#warning Please fill in with your MaxLeap credentials
      [MaxLeap setApplicationId:MaxLeap_AppId clientKey:MaxLeap_ClientKey site:MaxLeap_site];
     self.region = MaxLeap_site;
     

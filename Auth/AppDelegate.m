@@ -10,7 +10,7 @@
 #import <MLWeChatUtils/MLWeChatUtils.h>
 
 // cn pro
-#error Please replace the folowing keys
+#warning Please replace the folowing keys
 #define MaxLeap_AppId @"your_maxleap_applicationId"
 #define MaxLeap_ClientKey @"your_maxleap_clientkey"
 #define MaxLeap_site MLSiteCN
